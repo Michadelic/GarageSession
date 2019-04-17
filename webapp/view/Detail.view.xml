@@ -46,7 +46,7 @@
 						<Text id="countryText" text="{ToSupplier/PhoneNumber}"/>
 					</form:content>
 				</form:SimpleForm>
-				<Table xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" id="lineItemsList" width="auto" items="{ToSalesOrderLineItems}" mode="SingleSelectMaster" sticky="ColumnHeaders,HeaderToolbar" updateFinished=".onListUpdateFinished" noDataText="{i18n&gt;detailLineItemTableNoDataText}" busyIndicatorDelay="{detailView&gt;/lineItemTableDelay}" selectionChange="action" action:wiring="\{'selectionChange':\{'navigation':\{'routeName':'info'\}\}\}">
+				<Table id="lineItemsList" width="auto" items="{ToSalesOrderLineItems}" mode="SingleSelectMaster" sticky="ColumnHeaders,HeaderToolbar" updateFinished=".onListUpdateFinished" noDataText="{i18n&gt;detailLineItemTableNoDataText}" busyIndicatorDelay="{detailView&gt;/lineItemTableDelay}">
 					<headerToolbar>
 						<Toolbar>
 							<Title id="lineItemsTitle" text="{detailView&gt;/lineItemListTitle}" titleStyle="H3"/>
