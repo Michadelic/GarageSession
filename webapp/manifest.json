@@ -100,7 +100,7 @@
 					"target": "master"
 				},
 				{
-					"pattern": "SalesOrderSet/{objectId}",
+					"pattern": "Product/{objectId}",
 					"name": "object",
 					"target": [
 						"master",
@@ -108,7 +108,7 @@
 					]
 				},
 				{
-					"pattern": "SalesOrderSet/{objectId}/create",
+					"pattern": "Product/{objectId}/create",
 					"name": "create",
 					"target": [
 						"master",
@@ -117,7 +117,7 @@
 					]
 				},
 				{
-					"pattern": "SalesOrderSet/{objectId}/Item/{itemPosition}",
+					"pattern": "Product/{objectId}/Item/{itemPosition}",
 					"name": "info",
 					"target": [
 						"master",

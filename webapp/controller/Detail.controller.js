@@ -43,7 +43,7 @@ sap.ui.define([
 			var bReplace = !Device.system.phone;
 
 			this.getRouter().navTo("create", {
-				objectId : oEvent.getSource().getBindingContext().getProperty("SalesOrderID")
+				objectId : oEvent.getSource().getBindingContext().getProperty("ProductID")
 			}, bReplace);
 		},
 
@@ -132,9 +132,6 @@ sap.ui.define([
 
 			this.getView().bindElement({
 				path : sObjectPath,
-				parameters: {
-					'expand': 'ToSupplier'
-				},
 				events: {
 					change : this._onBindingChange.bind(this),
 					dataRequested : function () {
@@ -180,7 +177,7 @@ sap.ui.define([
 			var iOriginalViewBusyDelay = this.getView().getBusyIndicatorDelay(),
 				oViewModel = this.getModel("detailView"),
 				oLineItemTable = this.byId("lineItemsList"),
-				iOriginalLineItemTableBusyDelay = oLineItemTable.getBusyIndicatorDelay();
+				iOriginalLineItemTableBusyDelay = this.getView().getBusyIndicatorDelay();
 
 			// Make sure busy indicator is displayed immediately when
 			// detail view is displayed for the first time
@@ -293,13 +290,13 @@ sap.ui.define([
 				iDroppedIndex = oList.indexOfItem(oDroppedItem),
 				// get the new dropped item index
 				iNewDroppedIndex = iDroppedIndex + (sDropPosition === "Before" ? 0 : 1) + (iDraggedIndex < iDroppedIndex ? -1 : 0);
-				
+
 			// remove the dragged item
 			oList.removeItem(oDraggedItem);
 			// insert the dragged item on the new drop index
 			oList.insertItem(oDraggedItem, iNewDroppedIndex);
 		},
-		
+
 		/**
 		 * Move up the selected item
 		 * This is an alternative to reorder the list item

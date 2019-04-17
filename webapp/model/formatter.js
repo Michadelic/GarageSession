@@ -42,6 +42,23 @@ sap.ui.define([], function () {
 				default:
 					return sValue;
 			}
+		},
+
+		pictureURL: function (sName) {
+			var aPictures = [
+				"281422_ClothingOnHanger_R_orange.png",
+				"281444_FullShelves_R_blue.png",
+				"281448_GiftBag_R_blue.png",
+				"281492_SewingMachine_R_purple.png",
+				"281532_TShirt_R_green.png",
+				"281552_Suitcase2_R_blue.png",
+				"281584_GroceryBasket2_R_orange.png",
+				"281626_MilkJug_R_orange.png",
+				"282500_RunningShoes_R_green.png",
+				"282619_Nail-polish_R_purple.png"
+			];
+
+			return "../images/" + aPictures[Math.floor(aPictures.length * Math.random())];
 		}
 	};
 

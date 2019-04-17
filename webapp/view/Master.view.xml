@@ -39,7 +39,7 @@
 						descending: true
 					},
 					parameters: {
-						'expand': 'ToSupplier'
+						'expand': 'ToSupplier,ToSalesOrderLineItems'
 					},
 					groupHeaderFactory: '.createGroupHeader'
 				}"
@@ -104,6 +104,11 @@
 							path: 'Price',
 							formatter: '.formatter.currencyValue'
 						}"
+						icon="{
+							path: 'Name',
+							formatter: '.formatter.pictureURL'
+						}"
+						iconDensityAware="false"
 						numberUnit="{CurrencyCode}">
 						<ObjectAttribute text="{
 							path: 'CreatedAt',
