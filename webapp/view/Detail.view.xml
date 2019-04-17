@@ -1,21 +1,6 @@
-<mvc:View
-	controllerName="opensap.orders.controller.Detail"
-	xmlns="sap.m"
-	xmlns:semantic="sap.f.semantic"
-	xmlns:tnt="sap.tnt"
-	xmlns:si="sap.suite.ui.commons.statusindicator"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:l="sap.ui.layout"
-	xmlns:form="sap.ui.layout.form"
-	xmlns:f="sap.f"
-	xmlns:control="opensap.orders.control"
-	xmlns:dnd="sap.ui.core.dnd">
+<mvc:View xmlns="sap.m" xmlns:semantic="sap.f.semantic" xmlns:tnt="sap.tnt" xmlns:si="sap.suite.ui.commons.statusindicator" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:f="sap.f" xmlns:control="opensap.orders.control" xmlns:dnd="sap.ui.core.dnd" controllerName="opensap.orders.controller.Detail">
 
-	<semantic:SemanticPage
-		id="detailPage"
-		busy="{detailView>/busy}"
-		busyIndicatorDelay="{detailView>/delay}"
-		showFooter="true">
+	<semantic:SemanticPage id="detailPage" busy="{detailView&gt;/busy}" busyIndicatorDelay="{detailView&gt;/delay}" showFooter="true">
 		<semantic:titleHeading>
 			<Title text="{Name}"/>
 		</semantic:titleHeading>
@@ -35,86 +20,41 @@
 				<ObjectAttribute title="Weight" text="{WeightMeasure} {WeightUnit}"/>
 			</l:VerticalLayout>
 
-			<l:VerticalLayout>
+			<l:VerticalLayout class="sapUiMediumMarginEnd">
 				<ObjectAttribute title="Price" text="{Price} {CurrencyCode}"/>
 				<ObjectAttribute title="Tax Code" text="{TaxTarifCode}"/>
 			</l:VerticalLayout>
+			
+			<Button text="info" type="Emphasized" press="action" xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" action:wiring="\{'press':\{'navigation':\{'routeName':'Info'\}\}\}"/>
 		</semantic:headerContent>
 
 		<!-- Title Content-->
 		<semantic:titleContent>
-			<tnt:InfoLabel
-				text="{TypeCode}"
-				colorScheme="{
-					path: 'TypeCode',
-					formatter: '.formatter.deliveryStatus'
-				}"/>
+			<tnt:InfoLabel text="{ProductID}" colorScheme="{      path: 'ProductID',      formatter: '.formatter.deliveryStatus'     }"/>
 		</semantic:titleContent>
 		<semantic:content>
 			<VBox>
-				<form:SimpleForm id="SimpleFormDisplay354"
-					editable="false"
-					layout="ResponsiveGridLayout"
-					class="sapUiSmallMarginBottom"
-					title="Manufacturer"
-					labelSpanXL="3"
-					labelSpanL="3"
-					labelSpanM="3"
-					labelSpanS="12"
-					adjustLabelSpan="false"
-					emptySpanXL="4"
-					emptySpanL="4"
-					emptySpanM="4"
-					emptySpanS="0"
-					columnsXL="1"
-					columnsL="1"
-					columnsM="1"
-					singleContainerFullSize="false" >
+				<form:SimpleForm id="SimpleFormDisplay354" editable="false" layout="ResponsiveGridLayout" class="sapUiSmallMarginBottom" title="Manufacturer" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
 					<form:content>
-						<Label text="Name" />
-						<Text id="nameText" text="{ToSupplier/CompanyName}" />
-						<Label text="Legal form" />
-						<Text text="{ToSupplier/LegalForm}" />
-						<Label text="Web" />
-						<Text text="{ToSupplier/WebAddress}" />
-						<Label text="Phone" />
-						<Text id="countryText" text="{ToSupplier/PhoneNumber}" />
+						<Label text="Name"/>
+						<Text id="nameText" text="{ToSupplier/CompanyName}"/>
+						<Label text="Legal form"/>
+						<Text text="{ToSupplier/LegalForm}"/>
+						<Label text="Web"/>
+						<Text text="{ToSupplier/WebAddress}"/>
+						<Label text="Phone"/>
+						<Text id="countryText" text="{ToSupplier/PhoneNumber}"/>
 					</form:content>
 				</form:SimpleForm>
-				<Table
-					id="lineItemsList"
-					width="auto"
-					items="{ToSalesOrderLineItems}"
-					mode="SingleSelectMaster"
-					sticky="ColumnHeaders,HeaderToolbar"
-					updateFinished=".onListUpdateFinished"
-					noDataText="{i18n>detailLineItemTableNoDataText}"
-					busyIndicatorDelay="{detailView>/lineItemTableDelay}"
-					selectionChange="action"
-					xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-					action:wiring="\{'selectionChange':\{'navigation':\{'routeName':'info'\}\}\}">
+				<Table xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" id="lineItemsList" width="auto" items="{ToSalesOrderLineItems}" mode="SingleSelectMaster" sticky="ColumnHeaders,HeaderToolbar" updateFinished=".onListUpdateFinished" noDataText="{i18n&gt;detailLineItemTableNoDataText}" busyIndicatorDelay="{detailView&gt;/lineItemTableDelay}" selectionChange="action" action:wiring="\{'selectionChange':\{'navigation':\{'routeName':'info'\}\}\}">
 					<headerToolbar>
 						<Toolbar>
-							<Title
-								id="lineItemsTitle"
-								text="{detailView>/lineItemListTitle}"
-								titleStyle="H3"/>
-							<ToolbarSpacer />
-							<Button
-								icon="sap-icon://add"
-								tooltip="{i18n>createButtonTooltip}"
-								press=".onCreate"/>
-							<Button
-								icon="sap-icon://navigation-up-arrow"
-								press=".onMoveUp"
-								tooltip="{i18n>tooltipMoveUpButton}"/>
-							<Button
-								icon="sap-icon://navigation-down-arrow"
-								press=".onMoveDown"
-								tooltip="{i18n>tooltipMoveDownButton}"/>
-							<control:DeleteButton
-								icon="sap-icon://delete"
-								press=".onDelete">
+							<Title id="lineItemsTitle" text="{detailView&gt;/lineItemListTitle}" titleStyle="H3"/>
+							<ToolbarSpacer/>
+							<Button icon="sap-icon://add" tooltip="{i18n&gt;createButtonTooltip}" press=".onCreate"/>
+							<Button icon="sap-icon://navigation-up-arrow" press=".onMoveUp" tooltip="{i18n&gt;tooltipMoveUpButton}"/>
+							<Button icon="sap-icon://navigation-down-arrow" press=".onMoveDown" tooltip="{i18n&gt;tooltipMoveDownButton}"/>
+							<control:DeleteButton icon="sap-icon://delete" press=".onDelete">
 								<control:dragDropConfig>
 									<dnd:DropInfo drop=".onDelete"/>
 								</control:dragDropConfig>
@@ -123,51 +63,31 @@
 					</headerToolbar>
 					<columns>
 						<Column>
-							<Text text="{i18n>detailLineItemTableIDQuantity}"/>
+							<Text text="{i18n&gt;detailLineItemTableIDQuantity}"/>
 						</Column>
 						<Column>
-							<Text text="{i18n>detailLineItemTableIDColumn}"/>
+							<Text text="{i18n&gt;detailLineItemTableIDColumn}"/>
 						</Column>
-						<Column
-							minScreenWidth="Tablet"
-							demandPopin="true">
-							<Text text="{i18n>detailLineItemTableDeliveryDate}"/>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text text="{i18n&gt;detailLineItemTableDeliveryDate}"/>
 						</Column>
 						<!-- SAPUI5 only, comment out to see delivery status -->
 						<!-- <Column>
 							<Text text="{i18n>detailLineItemTableDeliveryUrgency}"/>
 						</Column>-->
-						<Column
-							minScreenWidth="Tablet"
-							demandPopin="true"
-							hAlign="End">
-							<Text text="{i18n>detailLineItemTableUnitNumberColumn}"/>
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
+							<Text text="{i18n&gt;detailLineItemTableUnitNumberColumn}"/>
 						</Column>
 					</columns>
 					<dragDropConfig>
-						<dnd:DragDropInfo
-							sourceAggregation="items"
-							targetAggregation="items"
-							dropPosition="Between"
-							drop=".onReorder"/>
+						<dnd:DragDropInfo sourceAggregation="items" targetAggregation="items" dropPosition="Between" drop=".onReorder"/>
 					</dragDropConfig>
 					<items>
-						<ColumnListItem
-							selected="{= ${ItemPosition} === ${appView>/selectedItemId} }"
-							type="Navigation">
+						<ColumnListItem selected="{= ${ItemPosition} === ${appView&gt;/selectedItemId} }" type="Navigation">
 							<cells>
-								<ObjectNumber
-									number="{Quantity}"/>
-								<ObjectIdentifier
-									title="{ProductID}"
-									text="{ItemPosition}"/>
-								<Text text="{
-									path: 'DeliveryDate',
-									type: 'sap.ui.model.type.Date',
-									formatOptions: {
-										style: 'medium'
-									}
-								}"/>
+								<ObjectNumber number="{Quantity}"/>
+								<ObjectIdentifier title="{ProductID}" text="{ItemPosition}"/>
+								<Text text="{          path: 'DeliveryDate',          type: 'sap.ui.model.type.Date',          formatOptions: {           style: 'medium'          }         }"/>
 								<!-- SAPUI5 only, comment out to see delivery status -->
 								<!--
 								<si:StatusIndicator
@@ -185,15 +105,7 @@
 										<si:PropertyThreshold fillColor="Good" toValue="100"/>
 									</si:propertyThresholds>
 								</si:StatusIndicator>-->
-								<ObjectNumber
-									number="{
-										path: 'NetAmount',
-										formatter: '.formatter.currencyValue'
-									}"
-									unit="{
-										path: 'CurrencyCode',
-										formatter: '.formatter.convertCurrencyCodeToSymbol'
-									}"/>
+								<ObjectNumber number="{           path: 'NetAmount',           formatter: '.formatter.currencyValue'          }" unit="{           path: 'CurrencyCode',           formatter: '.formatter.convertCurrencyCodeToSymbol'          }"/>
 							</cells>
 						</ColumnListItem>
 					</items>
@@ -202,28 +114,18 @@
 		</semantic:content>
 		<!--Semantic ShareMenu Buttons-->
 		<semantic:sendEmailAction>
-			<semantic:SendEmailAction
-				id="shareEmail"
-				press=".onSendEmailPress"/>
+			<semantic:SendEmailAction id="shareEmail" press=".onSendEmailPress"/>
 		</semantic:sendEmailAction>
 
 		<semantic:closeAction>
-			<semantic:CloseAction
-					id="closeColumn"
-					press=".onCloseDetailPress"/>
+			<semantic:CloseAction id="closeColumn" press=".onCloseDetailPress"/>
 		</semantic:closeAction>
 
 		<semantic:fullScreenAction>
-			<semantic:FullScreenAction
-					id="enterFullScreen"
-					visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}"
-					press=".toggleFullScreen"/>
+			<semantic:FullScreenAction id="enterFullScreen" visible="{= !${device&gt;/system/phone} &amp;&amp; !${appView&gt;/actionButtonsInfo/midColumn/fullScreen}}" press=".toggleFullScreen"/>
 		</semantic:fullScreenAction>
 		<semantic:exitFullScreenAction>
-			<semantic:ExitFullScreenAction
-					id="exitFullScreen"
-					visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}"
-					press=".toggleFullScreen"/>
+			<semantic:ExitFullScreenAction id="exitFullScreen" visible="{= !${device&gt;/system/phone} &amp;&amp; ${appView&gt;/actionButtonsInfo/midColumn/fullScreen}}" press=".toggleFullScreen"/>
 		</semantic:exitFullScreenAction>
 
 		<semantic:positiveAction>
@@ -235,7 +137,7 @@
 		</semantic:negativeAction>
 
 		<semantic:footerCustomActions>
-			<Button text="{i18n>DetailFooterCancel}"/>
+			<Button text="{i18n&gt;DetailFooterCancel}"/>
 		</semantic:footerCustomActions>
 
 	</semantic:SemanticPage>

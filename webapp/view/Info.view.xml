@@ -1,0 +1,61 @@
+<mvc:View 
+	xmlns:f="sap.f"
+	xmlns:card="sap.f.cards"
+	xmlns:tnt="sap.tnt"
+	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
+	controllerName="opensap.orders.controller.Info">
+	<App>
+		<pages>
+			<Page title="Product Info">
+				<content>
+					<Panel xmlns="sap.m" width="auto" expandable="true" expanded="true" id="panel0">
+						<headerToolbar>
+							<Toolbar id="toolbar1">
+								<Title text="Image"/>
+								<ToolbarSpacer/>
+								<Button icon="sap-icon://settings"/>
+							</Toolbar>
+						</headerToolbar>
+						<content>
+							<Image src="{ path: 'Name', formatter: '.formatter.pictureURL' }" width="100%" id="image0"/>
+						</content>
+					</Panel>
+					<f:Card class="sapUiMediumMargin" width="300px">
+						<f:header>
+							<card:Header title="Customers" subtitle="This product was bought by"/>
+						</f:header>
+						<f:content>
+							<List showSeparators="None" items="{path: '/ContactSet'}">
+								<CustomListItem>
+									<HBox alignItems="Center" justifyContent="SpaceBetween">
+										<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+											<Title level="H3" text="{FirstName} {LastName}"/>
+											<Text text="{EmailAddress}"/>
+											<Text text="{Address/City}"/>
+										</VBox>
+										<tnt:InfoLabel class="sapUiTinyMargin" text="{BusinessPartnerID}" colorScheme="{      path: 'BusinessPartnerID',      formatter: '.formatter.deliveryStatus'     }"/>
+									</HBox>
+								</CustomListItem>
+							</List>
+						</f:content>
+					</f:Card>
+					<IconTabBar selectedKey="__filter0" id="bar0">
+						<items>
+							<IconTabFilter text="Orders" count="22" showAll="true" id="filter0">
+								<content>
+									<List noDataText="No data" id="list0">
+										<items>
+											<StandardListItem title="List Item 1" id="item0"/>
+											<StandardListItem title="List Item 2" id="item1"/>
+											<StandardListItem title="List Item 3" id="item2"/></items>
+									</List>
+								</content>
+							</IconTabFilter>
+							<IconTabFilter text="Open" count="10" icon="sap-icon://task" iconColor="Critical" id="filter1"/>
+							<IconTabFilter text="Shipped" count="5" icon="sap-icon://shipping-status" iconColor="Positive" id="filter2"/></items>
+					</IconTabBar>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

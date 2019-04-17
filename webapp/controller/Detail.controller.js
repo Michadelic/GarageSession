@@ -20,14 +20,14 @@ sap.ui.define([
 		/* lifecycle methods                                           */
 		/* =========================================================== */
 
-		onInit : function () {
+		onInit: function () {
 			// Model used to manipulate control states. The chosen values make sure,
 			// detail page is busy indication immediately so there is no break in
 			// between the busy indication for loading the view's meta data
 			var oViewModel = new JSONModel({
-				busy : false,
-				delay : 0,
-				lineItemListTitle : this.getResourceBundle().getText("detailLineItemTableHeading")
+				busy: false,
+				delay: 0,
+				lineItemListTitle: this.getResourceBundle().getText("detailLineItemTableHeading")
 			});
 
 			this.getRouter().getRoute("object").attachPatternMatched(this._onObjectMatched, this);
@@ -43,7 +43,7 @@ sap.ui.define([
 			var bReplace = !Device.system.phone;
 
 			this.getRouter().navTo("create", {
-				objectId : oEvent.getSource().getBindingContext().getProperty("ProductID")
+				objectId: oEvent.getSource().getBindingContext().getProperty("ProductID")
 			}, bReplace);
 		},
 
@@ -55,7 +55,7 @@ sap.ui.define([
 		 * Event handler when the share by E-Mail button has been clicked
 		 * @public
 		 */
-		onSendEmailPress : function () {
+		onSendEmailPress: function () {
 			var oViewModel = this.getModel("detailView");
 
 			URLHelper.triggerEmail(
@@ -65,13 +65,12 @@ sap.ui.define([
 			);
 		},
 
-
 		/**
 		 * Updates the item count within the line item table's header
 		 * @param {object} oEvent an event containing the total number of items in the list
 		 * @private
 		 */
-		onListUpdateFinished : function (oEvent) {
+		onListUpdateFinished: function (oEvent) {
 			var sTitle,
 				iTotalItems = oEvent.getParameter("total"),
 				oViewModel = this.getModel("detailView");
@@ -98,8 +97,8 @@ sap.ui.define([
 		 * @param {sap.ui.base.Event} oEvent pattern match event in route 'object'
 		 * @private
 		 */
-		_onObjectMatched : function (oEvent) {
-			var sObjectId =  oEvent.getParameter("arguments").objectId;
+		_onObjectMatched: function (oEvent) {
+			var sObjectId = oEvent.getParameter("arguments").objectId;
 
 			if (!sObjectId) {
 				return;
@@ -108,9 +107,9 @@ sap.ui.define([
 				this.getModel("appView").setProperty("/layout", "TwoColumnsMidExpanded");
 			}
 
-			this.getModel().metadataLoaded().then( function() {
+			this.getModel().metadataLoaded().then(function () {
 				var sObjectPath = this.getModel().createKey("ProductSet", {
-					ProductID :  sObjectId
+					ProductID: sObjectId
 				});
 				this._bindView("/" + sObjectPath);
 			}.bind(this));
@@ -123,7 +122,7 @@ sap.ui.define([
 		 * @param {string} sObjectPath path to the object to be bound to the view.
 		 * @private
 		 */
-		_bindView : function (sObjectPath) {
+		_bindView: function (sObjectPath) {
 			// Set busy indicator during view binding
 			var oViewModel = this.getModel("detailView");
 
@@ -131,10 +130,10 @@ sap.ui.define([
 			oViewModel.setProperty("/busy", false);
 
 			this.getView().bindElement({
-				path : sObjectPath,
+				path: sObjectPath,
 				events: {
-					change : this._onBindingChange.bind(this),
-					dataRequested : function () {
+					change: this._onBindingChange.bind(this),
+					dataRequested: function () {
 						oViewModel.setProperty("/busy", true);
 					},
 					dataReceived: function () {
@@ -144,7 +143,7 @@ sap.ui.define([
 			});
 		},
 
-		_onBindingChange : function () {
+		_onBindingChange: function () {
 			var oView = this.getView(),
 				oElementBinding = oView.getElementBinding();
 
@@ -172,7 +171,7 @@ sap.ui.define([
 				oResourceBundle.getText("shareSendEmailObjectMessage", [sObjectName, sObjectId, location.href]));
 		},
 
-		_onMetadataLoaded : function () {
+		_onMetadataLoaded: function () {
 			// Store original busy indicator delay for the detail view
 			var iOriginalViewBusyDelay = this.getView().getBusyIndicatorDelay(),
 				oViewModel = this.getModel("detailView"),
@@ -184,7 +183,7 @@ sap.ui.define([
 			oViewModel.setProperty("/delay", 0);
 			oViewModel.setProperty("/lineItemTableDelay", 0);
 
-			oLineItemTable.attachEventOnce("updateFinished", function() {
+			oLineItemTable.attachEventOnce("updateFinished", function () {
 				// Restore original busy indicator delay for line item table
 				oViewModel.setProperty("/lineItemTableDelay", iOriginalLineItemTableBusyDelay);
 			});
@@ -217,7 +216,7 @@ sap.ui.define([
 				this.getModel("appView").setProperty("/layout", "MidColumnFullScreen");
 			} else {
 				// reset to previous layout
-				this.getModel("appView").setProperty("/layout",  this.getModel("appView").getProperty("/previousLayout"));
+				this.getModel("appView").setProperty("/layout", this.getModel("appView").getProperty("/previousLayout"));
 			}
 		},
 
@@ -225,18 +224,42 @@ sap.ui.define([
 		 * @param {sap.ui.base.Event} oEvent pattern match event in route 'object'
 		 */
 		action: function (oEvent) {
-			var bReplace = !Device.system.phone;
-			this.getRouter().navTo("info", {
-				objectId : (oEvent.getParameter("listItem") || oEvent.getSource()).getBindingContext().getProperty("SalesOrderID"),
-				itemPosition : (oEvent.getParameter("listItem") || oEvent.getSource()).getBindingContext().getProperty("ItemPosition")
-			}, bReplace);
+			var that = this;
+			var actionParameters = JSON.parse(oEvent.getSource().data("wiring").replace(/'/g, "\""));
+			var eventType = oEvent.getId();
+			var aTargets = actionParameters[eventType].targets || [];
+			aTargets.forEach(function (oTarget) {
+				var oControl = that.byId(oTarget.id);
+				if (oControl) {
+					var oParams = {};
+					for (var prop in oTarget.parameters) {
+						oParams[prop] = oEvent.getParameter(oTarget.parameters[prop]);
+					}
+					oControl[oTarget.action](oParams);
+				}
+			});
+			var oNavigation = actionParameters[eventType].navigation;
+			if (oNavigation) {
+				var oParams = {};
+				(oNavigation.keys || []).forEach(function (prop) {
+					oParams[prop.name] = encodeURIComponent(JSON.stringify({
+						value: oEvent.getSource().getBindingContext(oNavigation.model).getProperty(prop.name),
+						type: prop.type
+					}));
+				});
+				if (Object.getOwnPropertyNames(oParams).length !== 0) {
+					this.getOwnerComponent().getRouter().navTo(oNavigation.routeName, oParams);
+				} else {
+					this.getOwnerComponent().getRouter().navTo(oNavigation.routeName);
+				}
+			}
 		},
 
 		/**
 		 * Delete list items according to drag and drop actions
 		 * @param {sap.ui.base.Event} oEvent the drop event of the sap.ui.core.dnd.DropInfo
 		 */
-		onDelete : function (oEvent) {
+		onDelete: function (oEvent) {
 			// delete the dragged item
 			var oItemToDelete = oEvent.getParameter("draggedControl");
 
@@ -252,7 +275,7 @@ sap.ui.define([
 			this._confirmDelete(sPath, sTitle);
 		},
 
-		_confirmDelete : function (sPath, sTitle) {
+		_confirmDelete: function (sPath, sTitle) {
 			var oResourceBundle = this.getResourceBundle();
 			sap.ui.require(["sap/m/MessageBox"], function (MessageBox) {
 				MessageBox.confirm(oResourceBundle.getText("deleteConfirmationMessage") + " " + sTitle, {
@@ -260,12 +283,12 @@ sap.ui.define([
 					onClose: function (sAction) {
 						if (sAction === "OK") {
 							this.getModel().remove(sPath, {
-								success : function () {
+								success: function () {
 									sap.ui.require(["sap/m/MessageToast"], function (MessageToast) {
 										MessageToast.show(oResourceBundle.getText("deleteSuccessMessage"));
 									});
 								},
-								error : function () {
+								error: function () {
 									MessageBox.error(oResourceBundle.getText("deleteErrorMessage"));
 								}
 							});
@@ -279,7 +302,7 @@ sap.ui.define([
 		 * Reorder the list based on drag and drop actions
 		 * @param {sap.ui.base.Event} oEvent the drop event of the sap.ui.core.dnd.DragDropInfo
 		 */
-		onReorder : function (oEvent) {
+		onReorder: function (oEvent) {
 			var oDraggedItem = oEvent.getParameter("draggedControl"),
 				oDroppedItem = oEvent.getParameter("droppedControl"),
 				sDropPosition = oEvent.getParameter("dropPosition"),
@@ -302,7 +325,7 @@ sap.ui.define([
 		 * This is an alternative to reorder the list item
 		 * for devices that do not support drag and drop
 		 */
-		onMoveUp : function () {
+		onMoveUp: function () {
 			var oList = this.byId("lineItemsList"),
 				oSelectedItem = oList.getSelectedItem();
 			if (!oSelectedItem) {
@@ -317,7 +340,7 @@ sap.ui.define([
 		 * This is an alternative to reorder the list item
 		 * for devices that do not support drag and drop
 		 */
-		onMoveDown : function () {
+		onMoveDown: function () {
 			var oList = this.byId("lineItemsList"),
 				oSelectedItem = oList.getSelectedItem();
 			if (!oSelectedItem) {
@@ -332,7 +355,7 @@ sap.ui.define([
 		 * @param {oSelectedItem} The selected item object
 		 * @param {sDirection} Direction in which the item should move
 		 */
-		_moveSelectedItem : function (oSelectedItem, sDirection) {
+		_moveSelectedItem: function (oSelectedItem, sDirection) {
 			var oList = this.byId("lineItemsList"),
 				iIndex = oList.indexOfItem(oSelectedItem);
 			oList.removeItem(oSelectedItem);
@@ -347,7 +370,7 @@ sap.ui.define([
 		/**
 		 * Inform the user if no item is selected to move
 		 */
-		_showItemNotSelectedMsg : function () {
+		_showItemNotSelectedMsg: function () {
 			var oResourceBundle = this.getResourceBundle();
 			MessageToast.show(oResourceBundle.getText("selectItemToMoveMsg"));
 		}

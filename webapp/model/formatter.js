@@ -25,14 +25,10 @@ sap.ui.define([], function () {
 		 * @returns {int} The formatted delivery status value for the InfoLabel colorScheme
 		 */
 		deliveryStatus: function(sValue) {
-			switch(sValue) {
-				case "New": return 5;
-				case "In Progress": return 1;
-				case "Canceled": return 3;
-				case "Closed": return 7;
-				default: return 7;
-			}
+			var aStates = [1,2,3,4,5,6,7,8];
+			return aStates[Math.floor(aStates.length * Math.random())];
 		},
+
 		convertCurrencyCodeToSymbol: function (sValue) {
 			switch (sValue) {
 				case "USD":

@@ -124,6 +124,13 @@
 						"object",
 						"info"
 					]
+				},
+				{
+					"name": "Info",
+					"pattern": "Info",
+					"target": [
+						"Info"
+					]
 				}
 			],
 			"targets": {
@@ -152,6 +159,11 @@
 					"viewName": "Create",
 					"controlAggregation": "endColumnPages",
 					"viewId": "create"
+				},
+				"Info": {
+					"viewType": "XML",
+					"viewName": "Info",
+					"controlAggregation": "endColumnPages"
 				}
 			}
 		}
