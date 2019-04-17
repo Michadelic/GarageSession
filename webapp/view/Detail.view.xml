@@ -89,10 +89,7 @@
 					sticky="ColumnHeaders,HeaderToolbar"
 					updateFinished=".onListUpdateFinished"
 					noDataText="{i18n>detailLineItemTableNoDataText}"
-					busyIndicatorDelay="{detailView>/lineItemTableDelay}"
-					selectionChange="action"
-					xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-					action:wiring="\{'selectionChange':\{'navigation':\{'routeName':'info'\}\}\}">
+					busyIndicatorDelay="{detailView>/lineItemTableDelay}">
 					<headerToolbar>
 						<Toolbar>
 							<Title
