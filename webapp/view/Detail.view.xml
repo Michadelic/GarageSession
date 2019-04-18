@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="opensap.orders.controller.Detail"
+	controllerName="garage.session.controller.Detail"
 	xmlns="sap.m"
 	xmlns:semantic="sap.f.semantic"
 	xmlns:tnt="sap.tnt"
@@ -8,7 +8,7 @@
 	xmlns:l="sap.ui.layout"
 	xmlns:form="sap.ui.layout.form"
 	xmlns:f="sap.f"
-	xmlns:control="opensap.orders.control"
+	xmlns:control="garage.session.control"
 	xmlns:dnd="sap.ui.core.dnd">
 
 	<semantic:SemanticPage

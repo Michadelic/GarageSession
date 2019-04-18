@@ -1,7 +1,7 @@
 /*global QUnit*/
 
 sap.ui.define([
-	"opensap/orders/controller/ListSelector"
+	"garage/session/controller/ListSelector"
 ], function(ListSelector) {
 	"use strict";
 

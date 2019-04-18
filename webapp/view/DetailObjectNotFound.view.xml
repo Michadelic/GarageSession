@@ -1,5 +1,5 @@
 <mvc:View
-	controllerName="opensap.orders.controller.BaseController"
+	controllerName="garage.session.controller.BaseController"
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
 

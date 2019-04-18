@@ -43,15 +43,6 @@ sap.ui.define([
 		Then.onTheDetailPage.iShouldSeeTheFullScreenToggleButton("enterFullScreen");
 	});
 
-	opaTest("Open Third Column", function (Given, When, Then) {
-		// Actions
-		When.onTheDetailPage.iPressOnTheFirstObject();
-
-		// Assertions
-		Then.onTheAppPage.theAppShowsFCLDesign("ThreeColumnsEndExpanded");
-		Then.onTheInfoPage.iShouldSeeTheInfoPage();
-	});
-
 	opaTest("Should react on hash change", function (Given, When, Then) {
 		// Actions
 		When.onTheMasterPage.iRememberTheIdOfListItemAtPosition(1);
@@ -67,7 +58,6 @@ sap.ui.define([
 
 		// Assertions
 		Then.onTheDetailPage.iShouldSeeTheObjectLineItemsList().
-			and.theDetailViewShouldContainOnlyFormattedUnitNumbers().
 			and.theLineItemsListShouldHaveTheCorrectNumberOfItems().
 			and.theLineItemsHeaderShouldDisplayTheAmountOfEntries();
 

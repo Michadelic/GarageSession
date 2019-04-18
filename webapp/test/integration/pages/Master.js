@@ -156,7 +156,7 @@ sap.ui.define([
 				},
 				iRememberAnIdOfAnObjectThatsNotInTheList : function () {
 					return this.waitFor(this.createAWaitForAnEntitySet({
-						entitySet : "SalesOrderSet",
+						entitySet : "ProductSet",
 						success : function (aEntityData) {
 							this.waitFor({
 								id : "list",
@@ -166,21 +166,21 @@ sap.ui.define([
 									var sCurrentId,
 										aItemsNotInTheList = aEntityData.filter(function (oObject) {
 											return !oList.getItems().some(function (oListItem) {
-												return oListItem.getBindingContext().getProperty("SalesOrderID") === oObject.SalesOrderID;
+												return oListItem.getBindingContext().getProperty("ProductID") === oObject.ProductID;
 											});
 										});
 
 									if (!aItemsNotInTheList.length) {
 										// Not enough items all of them are displayed so we take the last one
-										sCurrentId = aEntityData[aEntityData.length - 1].SalesOrderID;
+										sCurrentId = aEntityData[aEntityData.length - 1].ProductID;
 									} else {
-										sCurrentId = aItemsNotInTheList[0].SalesOrderID;
+										sCurrentId = aItemsNotInTheList[0].ProductID;
 									}
 
 									var oCurrentItem = this.getContext().currentItem;
 									// Construct a binding path since the list item is not created yet and we only have the id.
-									oCurrentItem.bindingPath = "/" + oList.getModel().createKey("SalesOrderSet", {
-										SalesOrderID : sCurrentId
+									oCurrentItem.bindingPath = "/" + oList.getModel().createKey("ProductSet", {
+										ProductID : sCurrentId
 									});
 									oCurrentItem.id = sCurrentId;
 								},
@@ -244,8 +244,8 @@ sap.ui.define([
 					var oBindingContext = oListItem.getBindingContext();
 					this.getContext().currentItem = {
 						bindingPath: oBindingContext.getPath(),
-						id: oBindingContext.getProperty("SalesOrderID"),
-						title: oBindingContext.getProperty("CustomerName")
+						id: oBindingContext.getProperty("ProductID"),
+						title: oBindingContext.getProperty("Name")
 					};
 				}
 			},
@@ -412,9 +412,9 @@ sap.ui.define([
 				theListShouldHaveAllEntries : function () {
 					var aAllEntities,
 						iExpectedNumberOfItems;
-					// retrieve all SalesOrderSet to be able to check for the total amount
+					// retrieve all ProductSet to be able to check for the total amount
 					this.waitFor(this.createAWaitForAnEntitySet({
-						entitySet : "SalesOrderSet",
+						entitySet : "ProductSet",
 						success : function (aEntityData) {
 							aAllEntities = aEntityData;
 						}

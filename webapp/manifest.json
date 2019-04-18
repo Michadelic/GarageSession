@@ -1,7 +1,7 @@
 {
 	"_version": "1.12.0",
 	"sap.app": {
-		"id": "opensap.orders",
+		"id": "garage.session",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"title": "{{appTitle}}",
@@ -46,7 +46,7 @@
 			"opensap.reuse.control": "./control"
 		},
 		"rootView": {
-			"viewName": "opensap.orders.view.App",
+			"viewName": "garage.session.view.App",
 			"type": "XML",
 			"async": true,
 			"id": "app"
@@ -70,7 +70,7 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "opensap.orders.i18n.i18n"
+					"bundleName": "garage.session.i18n.i18n"
 				}
 			},
 			"": {
@@ -85,7 +85,7 @@
 			"config": {
 				"routerClass": "sap.f.routing.Router",
 				"viewType": "XML",
-				"viewPath": "opensap.orders.view",
+				"viewPath": "garage.session.view",
 				"controlId": "layout",
 				"controlAggregation": "beginColumnPages",
 				"bypassed": {
@@ -100,7 +100,7 @@
 					"target": "master"
 				},
 				{
-					"pattern": "Product/{objectId}",
+					"pattern": "ProductSet/{objectId}",
 					"name": "object",
 					"target": [
 						"master",
@@ -108,7 +108,7 @@
 					]
 				},
 				{
-					"pattern": "Product/{objectId}/create",
+					"pattern": "ProductSet/{objectId}/create",
 					"name": "create",
 					"target": [
 						"master",
@@ -117,7 +117,7 @@
 					]
 				},
 				{
-					"pattern": "Product/{objectId}/Item/{itemPosition}",
+					"pattern": "ProductSet/{objectId}/Item/{itemPosition}",
 					"name": "info",
 					"target": [
 						"master",
