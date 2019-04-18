@@ -3,7 +3,7 @@
 	xmlns:card="sap.f.cards"
 	xmlns:tnt="sap.tnt"
 	xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:html="http://www.w3.org/1999/xhtml"
-	controllerName="opensap.orders.controller.Info">
+	controllerName="garage.session.controller.Info">
 	<App>
 		<pages>
 			<Page title="Product Info">
