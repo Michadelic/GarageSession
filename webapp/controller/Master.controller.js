@@ -349,6 +349,28 @@ sap.ui.define([
 			var oViewModel = this.getModel("masterView");
 			oViewModel.setProperty("/isFilterBarVisible", (this._oListFilterState.aFilter.length > 0));
 			oViewModel.setProperty("/filterBarLabel", this.getResourceBundle().getText("masterFilterBarText", [sFilterBarText]));
+		},
+
+		/**
+		 * Reorder the list based on drag and drop actions
+		 * @param {sap.ui.base.Event} oEvent the drop event of the sap.ui.core.dnd.DragDropInfo
+		 */
+		onReorder: function (oEvent) {
+			var oDraggedItem = oEvent.getParameter("draggedControl"),
+				oDroppedItem = oEvent.getParameter("droppedControl"),
+				sDropPosition = oEvent.getParameter("dropPosition"),
+				oList = this.byId("list"),
+				// get the index of dragged item
+				iDraggedIndex = oList.indexOfItem(oDraggedItem),
+				// get the index of dropped item
+				iDroppedIndex = oList.indexOfItem(oDroppedItem),
+				// get the new dropped item index
+				iNewDroppedIndex = iDroppedIndex + (sDropPosition === "Before" ? 0 : 1) + (iDraggedIndex < iDroppedIndex ? -1 : 0);
+
+			// remove the dragged item
+			oList.removeItem(oDraggedItem);
+			// insert the dragged item on the new drop index
+			oList.insertItem(oDraggedItem, iNewDroppedIndex);
 		}
 
 	});

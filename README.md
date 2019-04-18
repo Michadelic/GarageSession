@@ -111,6 +111,8 @@ sap.ui.define([
 
 ### Add layout controls to the new view
 
+Let's add some new UI controls to the app to display additional product infos
+
 1. In the `storyboard editor` perspective double click on the info view
 
 2. Adjust the title to "Product Info"
@@ -133,11 +135,133 @@ sap.ui.define([
 
 ### Add a Fiori 3 Card
 
-TBD
+Fiori 3 offers an evolved [cards](https://experience.sap.com/fiori-design-web/overview-page-card/) concept. Let's integrate this feature in our app.
+
+1. Go to https://ui5.sap.com/ > Documentation > What's new > What's new with 1.64
+
+2. Take a look at the `sap.f.Card` examples and click on [sample](https://ui5.sap.com/#/entity/sap.f.Card/sample/sap.f.sample.Card)
+
+3. Click on the `Show source code` button in the upper right
+
+4. **Info.view.xml:** Add the following namespaces at the top and code after the image panel to show a card
+
+``` xml
+	xmlns:f="sap.f"
+	xmlns:card="sap.f.cards"
+```
+
+``` xml
+	<f:Card
+		class="sapUiMediumMargin"
+		width="300px">
+		<f:header>
+			<card:Header
+				title="Project Cloud Transformation"
+				subtitle="Revenue per Product | EUR"/>
+		</f:header>
+		<f:content>
+			<List
+				showSeparators="None"
+				items="{path: '/productItems'}" >
+				<CustomListItem>
+					<HBox
+						 alignItems="Center"
+						justifyContent="SpaceBetween">
+						<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom" >
+							<Title level="H3" text="{title}" />
+							<Text text="{subtitle}"/>
+						</VBox>
+						<tnt:InfoLabel
+							class="sapUiTinyMargin"
+							text="{revenue}"
+							colorScheme= "{statusSchema}"/>
+					</HBox>
+				</CustomListItem>
+			</List>
+		</f:content>
+	</f:Card>
+```
+
+5. Browse the [metadata.xml](localService/metadata.xml) file to see which other entities the ES5 service `GWSAMPLE_BASIC` offers
+
+6. Let's implement a panel with customers that bought the product with the following code:
+
+``` xml
+	<f:Card class="sapUiMediumMargin" width="300px">
+		<f:header>
+			<card:Header title="Customers" subtitle="This product was bought by"/>
+		</f:header>
+		<f:content>
+			<List showSeparators="None" items="{path: '/ContactSet'}">
+				<CustomListItem>
+					<HBox alignItems="Center" justifyContent="SpaceBetween">
+						<VBox class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom">
+							<Title level="H3" text="{FirstName} {LastName}"/>
+							<Text text="{EmailAddress}"/>
+							<Text text="{Address/City}"/>
+						</VBox>
+						<tnt:InfoLabel class="sapUiTinyMargin" text="{BusinessPartnerID}" colorScheme="{	  path: 'BusinessPartnerID',	  formatter: '.formatter.deliveryStatus'	 }"/>
+					</HBox>
+				</CustomListItem>
+			</List>
+		</f:content>
+	</f:Card>
+```
+
+7. Open the app and check that everything is working as designed
 
 ### Enable Drag & Drop
 
-TBD
+Drag and drop has been added as a recent feature. To configure it you only need to add configuration
+
+1. **Master.view.xml:** Add the drag and drop namespace and config to your view to allow reordering of the master list items:
+
+``` xml
+    xmlns:dnd="sap.ui.core.dnd"
+``` xml
+<List>
+	<dragDropConfig>
+		<dnd:DragDropInfo sourceAggregation="items" targetAggregation="items" dropPosition="Between" drop=".onReorder"/>
+	</dragDropConfig>
+...
+```
+
+2. **Master.controller.js:** Add the controller logic to reorder the items in the UI (in productive apps the new order would also be persisted on the back end, of course):
+
+``` js
+/**
+		 * Reorder the list based on drag and drop actions
+		 * @param {sap.ui.base.Event} oEvent the drop event of the sap.ui.core.dnd.DragDropInfo
+		 */
+		onReorder: function (oEvent) {
+			var oDraggedItem = oEvent.getParameter("draggedControl"),
+				oDroppedItem = oEvent.getParameter("droppedControl"),
+				sDropPosition = oEvent.getParameter("dropPosition"),
+				oList = this.byId("list"),
+				// get the index of dragged item
+				iDraggedIndex = oList.indexOfItem(oDraggedItem),
+				// get the index of dropped item
+				iDroppedIndex = oList.indexOfItem(oDroppedItem),
+				// get the new dropped item index
+				iNewDroppedIndex = iDroppedIndex + (sDropPosition === "Before" ? 0 : 1) + (iDraggedIndex < iDroppedIndex ? -1 : 0);
+
+			// remove the dragged item
+			oList.removeItem(oDraggedItem);
+			// insert the dragged item on the new drop index
+			oList.insertItem(oDraggedItem, iNewDroppedIndex);
+		}
+```
+
+3. Open the app and drag and drop an item in the list.
+
+4. That's all for today, feel free to dig deeper and play around with the existing codebase!
+
+I hope you liked the garage session about UI5!
+You can find alot more information on [SAPUI5](https://ui5.sap.com) and [OpenUI5](https://openui5.org) on our official info pages.
+
+Have fun,
+
+**Michael**
 
 ## Questions
 
