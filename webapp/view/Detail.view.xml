@@ -35,7 +35,7 @@
 				<ObjectAttribute title="Weight" text="{WeightMeasure} {WeightUnit}"/>
 			</l:VerticalLayout>
 
-			<l:VerticalLayout>
+			<l:VerticalLayout class="sapUiMediumMarginEnd">
 				<ObjectAttribute title="Price" text="{Price} {CurrencyCode}"/>
 				<ObjectAttribute title="Tax Code" text="{TaxTarifCode}"/>
 			</l:VerticalLayout>
