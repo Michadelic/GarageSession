@@ -10,11 +10,11 @@ Join us on April 24, 2019 as we zero in on SAPUI5, our Javascript application fr
 ## Prerequisites
 
 
-1. [Create a trial account](https://developers.sap.com/germany/tutorials/hcp-create-trial-account.html) on the SAP Hana Cloud Platform
+1. [Create a trial account](https://developers.sap.com/germany/tutorials/hcp-create-trial-account.html) on the SAP Hana Cloud Platform. You can also re-use an existing account.
 
-2. [Create an account](https://developers.sap.com/germany/tutorials/gateway-demo-signup.html) on our SAP Gateway Demo System ES5
+2. [Create an account](https://developers.sap.com/germany/tutorials/gateway-demo-signup.html) on our SAP Gateway Demo System ES5. All necessary steps are described in the tutorial.
 
-3. [Set up a destination](https://sapui5.hana.ondemand.com/#/topic/3a16c7a2f1e944deb000db49e5ece6be) to ES5 in your SAP Cloud Platform trial account
+3. [Set up a destination](https://sapui5.hana.ondemand.com/#/topic/3a16c7a2f1e944deb000db49e5ece6be) to ES5 in your SAP Cloud Platform trial account. To do so, simply import the file [ES5](ES5) into your destinations.
 
 ## Setup
 
@@ -42,23 +42,94 @@ The solution of all steps is located in the `master` branch.
 Note that the project is set up according to our [evolved best practices for app developers](https://sapui5.hana.ondemand.com/#/topic/28fcd55b04654977b63dacbee0552712).
 
 * General
-** Fiori 3 Theme
-** Precofigured Fiori Flexible Column layout with two columns
-** Best Practice starting point for custom app development
+  * Fiori 3 Theme
+  * Precofigured Fiori Flexible Column layout with two columns
+  * Best Practice starting point for custom app development
 
 * Index
-** Declarative Component Start
-** Asynchronous loading of all resources
-** CSP Compliant (no JavaScript in HTML pages)
+  * Declarative Component Start
+  * Asynchronous loading of all resources
+  * CSP Compliant (no JavaScript in HTML pages)
 
 * Quality
-** Preconfigured mockserver and testing tools
-** Basic test coverage of the template features
-** Karma-ready unit and integration tests
+  * Preconfigured mockserver and testing tools
+  * Basic test coverage of the template features
+  * Karma-ready unit and integration tests
 
 ### Create an Info View
 
-TBD
+1. **Detail.view.xml:** Add a new Button to the detail page
+
+``` xml
+  <Button type="Emphasized" text="info"/>
+```
+
+2. In SAP Web IDE, go to the `Storyboard Editor` perspective
+
+3. Choos the project `Garage Session`
+
+4. Add a new view called `Info`
+
+5. Click on the view `Detail.view.xml` and select the arrow button (configure navigation):
+
+6. Choose the following settings
+
+* Control: info Button
+* Navigate to: Info
+* Open target as: `endColumnPages`
+
+7. **Info.controller.js:** Update the info controller (set up a formatter and switch to three column layout):
+
+``` js
+sap.ui.define([
+   	"sap/ui/core/mvc/Controller",
+   	"../model/formatter"
+   ], function (Controller, formatter) {
+   	"use strict";
+
+   	return Controller.extend("garage.session.controller.Info", {
+
+   		formatter: formatter,
+
+   				/**
+   		 * Called when a controller is instantiated and its View controls (if available) are already created.
+   		 * Can be used to modify the View before it is displayed, to bind event handlers and do other one-time initialization.
+   		 * @memberOf garage.session.view.Info
+   		 */
+   		onInit: function () {
+   			this.getOwnerComponent().getRouter().getRoute("Info").attachPatternMatched(function () {
+   				this.getView().getModel("appView").setProperty("/layout", "ThreeColumnsMidExpanded");
+   			}.bind(this));
+   		}
+
+   	});
+
+   });
+```
+
+8. Test that the new setup works
+
+### Add layout controls to the new view
+
+1. In the `storyboard editor` perspective double click on the info view
+
+2. Adjust the title to "Product Info"
+
+3. Drop a `Panel` from the `Container` section and name it `Image`
+
+4. Remove the `Text` control with text `panel content`
+
+5. Drop an `Image` control from the `Display` section and set width to `100%`, height to nothing
+
+6. **Info.view.xml:** Exchange the image with our product image and formatter
+
+``` xml
+<Image src="{ path: 'Name', formatter: '.formatter.pictureURL' }" width="100%" id="image0"/>
+```
+
+7. Drop an `IconTabBar` control from the `Container` section
+
+8. Open the app and test the new features
 
 ### Add a Fiori 3 Card
 
