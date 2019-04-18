@@ -3,6 +3,9 @@
 Demo app for the fabulous SCP Garage Session on UI5 with Scott Dillon.
 The session takes place on 24th of April, for more information please check the [event page](https://event.on24.com/wcc/r/1721484/7EFF8CF8FCA2E0A837AC679892422B98/311279?partnerref=SD).
 
+If you like to learn UI5, check out the upcoming openSAP course [Evolved Web Apps With SAPUI5](https://open.sap.com/courses/ui52), it is a free online course that starts *May 8th 2019*!
+You can also find alot more information on [SAPUI5](https://ui5.sap.com) and [OpenUI5](https://openui5.org) on our official info pages.
+
 ## Abstract
 
 Join us on April 24, 2019 as we zero in on SAPUI5, our Javascript application framework. This responsive toolkit works cross platform and supports our enterprise applications for our customers. For anyone willing to learn the ins and outs of SAPUI5, we’ve made the core components of the framework available as open source with OpenUI5. In addition, the UI5 technology is widely acknowledged as the foundation upon which other crucial applications like SAP Fiori, SAP Fiori Applications and SAP Fiori Elements were built and delivered. In this session, Michael Graf, an SAPUI5 Expert developer, will join us to see if he can substantiate Scott’s SAPUI5 knowledge and dispel some common myths about the toolkit. Scott will apply what he’s learned to create one or two simple applications that will illustrate some key aspects of developing great UI5 applications.
@@ -257,7 +260,6 @@ Drag and drop has been added as a recent feature. To configure it you only need 
 4. That's all for today, feel free to dig deeper and play around with the existing codebase!
 
 I hope you liked the garage session about UI5!
-You can find alot more information on [SAPUI5](https://ui5.sap.com) and [OpenUI5](https://openui5.org) on our official info pages.
 
 Have fun,
 
