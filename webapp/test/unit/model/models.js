@@ -1,7 +1,7 @@
 /*global QUnit*/
 
 sap.ui.define([
-	"opensap/orders/model/models"
+	"garage/session/model/models"
 ], function (models) {
 	"use strict";
 

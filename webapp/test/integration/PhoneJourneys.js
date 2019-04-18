@@ -9,7 +9,7 @@ sap.ui.define([
 
 	Opa5.extendConfig({
 		arrangements: new Startup(),
-		viewNamespace: "opensap.orders.view.",
+		viewNamespace: "garage.session.view.",
 		autoWait: true
 	});
 });

@@ -54,7 +54,7 @@ sap.ui.define([], function () {
 				"282619_Nail-polish_R_purple.png"
 			];
 
-			return sap.ui.require.toUrl("opensap/orders/images/" + aPictures[Math.floor(aPictures.length * Math.random())]);
+			return sap.ui.require.toUrl("garage/session/images/" + aPictures[Math.floor(aPictures.length * Math.random())]);
 		}
 	};
 

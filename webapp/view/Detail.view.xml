@@ -1,4 +1,4 @@
-<mvc:View xmlns="sap.m" xmlns:semantic="sap.f.semantic" xmlns:tnt="sap.tnt" xmlns:si="sap.suite.ui.commons.statusindicator" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:f="sap.f" xmlns:control="opensap.orders.control" xmlns:dnd="sap.ui.core.dnd" controllerName="opensap.orders.controller.Detail">
+<mvc:View xmlns="sap.m" xmlns:semantic="sap.f.semantic" xmlns:tnt="sap.tnt" xmlns:si="sap.suite.ui.commons.statusindicator" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:f="sap.f" xmlns:control="opensap.orders.control" xmlns:dnd="sap.ui.core.dnd" controllerName="garage.session.controller.Detail">
 
 	<semantic:SemanticPage id="detailPage" busy="{detailView&gt;/busy}" busyIndicatorDelay="{detailView&gt;/delay}" showFooter="true">
 		<semantic:titleHeading>
@@ -24,7 +24,7 @@
 				<ObjectAttribute title="Price" text="{Price} {CurrencyCode}"/>
 				<ObjectAttribute title="Tax Code" text="{TaxTarifCode}"/>
 			</l:VerticalLayout>
-			
+
 			<Button text="info" type="Emphasized" press="action" xmlns:action="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" action:wiring="\{'press':\{'navigation':\{'routeName':'Info'\}\}\}"/>
 		</semantic:headerContent>
 

@@ -12,7 +12,7 @@ sap.ui.define([
 	// shortcut for sap.m.URLHelper
 	var URLHelper = mobileLibrary.URLHelper;
 
-	return BaseController.extend("opensap.orders.controller.Detail", {
+	return BaseController.extend("garage.session.controller.Detail", {
 
 		formatter: formatter,
 

@@ -61,7 +61,7 @@ sap.ui.define([
 
 				iShouldBeOnTheObjectNPage : function (iObjIndex) {
 					return this.waitFor(this.createAWaitForAnEntitySet({
-						entitySet : "SalesOrderSet",
+						entitySet : "ProductSet",
 						success : function (aEntitySet) {
 							var sItemName = aEntitySet[iObjIndex].Name;
 
@@ -113,7 +113,7 @@ sap.ui.define([
 
 				theLineItemsListShouldHaveTheCorrectNumberOfItems : function () {
 					return this.waitFor(this.createAWaitForAnEntitySet({
-						entitySet : "ToSupplier",
+						entitySet : "SalesOrderLineItemSet",
 						success : function (aEntitySet) {
 
 							return this.waitFor({
@@ -122,10 +122,10 @@ sap.ui.define([
 								matchers : new AggregationFilled({name : "items"}),
 								check: function (oList) {
 
-									var sObjectID = oList.getBindingContext().getProperty("SalesOrderID");
+									var sObjectID = oList.getBindingContext().getProperty("ProductID");
 
 									var iLength = aEntitySet.filter(function (oLineItem) {
-										return oLineItem.SalesOrderID === sObjectID;
+										return oLineItem.ProductID === sObjectID;
 									}).length;
 
 									return oList.getItems().length === iLength;
@@ -161,7 +161,7 @@ sap.ui.define([
 							return this.waitFor({
 								id : "lineItemsTitle",
 								viewName : sViewName,
-								matchers : new PropertyStrictEquals({name: "text", value: "Products (" + iNumberOfItems + ")"}),
+								matchers : new PropertyStrictEquals({name: "text", value: "Purchases (" + iNumberOfItems + ")"}),
 								success : function () {
 									Opa5.assert.ok(true, "The line item list displays " + iNumberOfItems + " items");
 								},

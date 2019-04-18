@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (Button) {
 	"use strict";
 
-	return Button.extend("opensap.orders.control.DeleteButton", {
+	return Button.extend("garage.session.control.DeleteButton", {
 
 		metadata : {
 			dnd: {

@@ -4,7 +4,7 @@ sap.ui.define([
 ], function (BaseController, MessageToast) {
 	"use strict";
 
-	return BaseController.extend("opensap.orders.controller.Create", {
+	return BaseController.extend("garage.session.controller.Create", {
 
 		onInit: function () {
 			// create a message manager and register the message model
