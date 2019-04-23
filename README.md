@@ -10,6 +10,28 @@ You can also find alot more information on [SAPUI5](https://ui5.sap.com) and [Op
 
 Join us on April 24, 2019 as we zero in on SAPUI5, our Javascript application framework. This responsive toolkit works cross platform and supports our enterprise applications for our customers. For anyone willing to learn the ins and outs of SAPUI5, we’ve made the core components of the framework available as open source with OpenUI5. In addition, the UI5 technology is widely acknowledged as the foundation upon which other crucial applications like SAP Fiori, SAP Fiori Applications and SAP Fiori Elements were built and delivered. In this session, Michael Graf, an SAPUI5 Expert developer, will join us to see if he can substantiate Scott’s SAPUI5 knowledge and dispel some common myths about the toolkit. Scott will apply what he’s learned to create one or two simple applications that will illustrate some key aspects of developing great UI5 applications.
 
+## Why SAPUI5?
+
+[SAPUI5](http://ui5.sap.com) and it's open source variant [OpenUI5](https://openui5.org) are a perfect match for creating enterprise-grade web apps.
+They come with feature-rich UI controls, powerful development concepts and  well-aligned development tools that will boost your developer productivity and get your app up and running in no time.
+
+### Feature-Rich Controls
+
+Besides bread and butter controls like buttons, lists, images and so on UI5 comes with a massive amount of feature-rich controls ready to be used out of the box .
+More than 400 UI controls empower you to implement complex application scenarios with little coding efforts when it comes to defining the UI.
+There are UI controls for predefined Fiori layouts, charts for data visualization, various filtering and personalization options, and [much more](https://ui5.sap.com/#/controls).
+
+### Enterprise-Grade Features
+
+When using UI5, you will get a whole suite of tools that makes your life as a developer easier. You can make use of powerful development concepts like data binding and OData, use well-aligned tools like SAP Web IDE and easily integrate with SAP infrastructure and services on the SAP Cloud Platform.
+Your app will automatically be ready for localization (translation, RTL support, calendars, measures) and for accessibility (high contrast themes, keyboard support, screenreader support). During development, the UI5 support tools will help you find errors and optimize your app. Once released, Flexibility services can be used to adapt and extend your apps.
+
+### Responsive & Consistent Fiori Design
+
+Web apps built with UI5 run on any device and platform - they implement device-specific features and adapt to the available real estate out of the box or based on your preferences.
+The award-winning Fiori design language is implemented in all UI5 controls and brings consistency and a beautiful UI to your applications without any additional efforts.
+Templates that implement specific Fiori floorplans guarantee that actions are always located in the same places and look and feel the same across applications and screens.
+
 ## Prerequisites
 
 
@@ -61,7 +83,7 @@ Note that the project is set up according to our [evolved best practices for app
 
 ### Create an Info View
 
-1. **Detail.view.xml:** Add a new Button to the detail page
+1. **Detail.view.xml:** Add a new Button at the end of the `<semantic:headerContent>`section of detail page:
 
 ``` xml
   <Button type="Emphasized" text="info"/>
@@ -220,7 +242,7 @@ Drag and drop has been added as a recent feature. To configure it you only need 
 1. **Master.view.xml:** Add the drag and drop namespace and config to your view to allow reordering of the master list items:
 
 ``` xml
-    xmlns:dnd="sap.ui.core.dnd"
+	xmlns:dnd="sap.ui.core.dnd"
 ``` xml
 <List>
 	<dragDropConfig>
@@ -232,7 +254,7 @@ Drag and drop has been added as a recent feature. To configure it you only need 
 2. **Master.controller.js:** Add the controller logic to reorder the items in the UI (in productive apps the new order would also be persisted on the back end, of course):
 
 ``` js
-/**
+		/**
 		 * Reorder the list based on drag and drop actions
 		 * @param {sap.ui.base.Event} oEvent the drop event of the sap.ui.core.dnd.DragDropInfo
 		 */
