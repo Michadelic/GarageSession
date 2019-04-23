@@ -32,6 +32,9 @@ Web apps built with UI5 run on any device and platform - they implement device-s
 The award-winning Fiori design language is implemented in all UI5 controls and brings consistency and a beautiful UI to your applications without any additional efforts.
 Templates that implement specific Fiori floorplans guarantee that actions are always located in the same places and look and feel the same across applications and screens.
 
+Fiori Elements for floorplans - or custom development for custom UI
+
+
 ## Prerequisites
 
 
@@ -132,7 +135,23 @@ sap.ui.define([
    });
 ```
 
-8. Test that the new setup works
+8. **.manifest.json:** Adjust the targets to display all three columns (add entries "master and "object")
+
+``` json
+{
+    "name": "Info",
+    "pattern": "Info",
+    "target": [
+        "master",
+        "object",
+        "Info"
+    ]
+}
+```
+
+> *Note:* Technically the info route pattern needs to be adjusted to contain the `objectId` as a context parameter, we skip this step to keep the example simple. To learn more about Navigation, check the [Navigation and Routing tutorial](https://ui5.sap.com/#/topic/1b6dcd39a6a74f528b27ddb22f15af0d).
+
+9. Test that the new setup works
 
 ### Add layout controls to the new view
 
