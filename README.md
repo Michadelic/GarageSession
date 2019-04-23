@@ -17,7 +17,7 @@ They come with feature-rich UI controls, powerful development concepts and  well
 
 ### Feature-Rich Controls
 
-Besides bread and butter controls like buttons, lists, images and so on UI5 comes with a massive amount of feature-rich controls ready to be used out of the box .
+Besides bread and butter controls like buttons, lists, images and so on UI5 comes with a massive amount of feature-rich controls ready to be used out of the box.
 More than 400 UI controls empower you to implement complex application scenarios with little coding efforts when it comes to defining the UI.
 There are UI controls for predefined Fiori layouts, charts for data visualization, various filtering and personalization options, and [much more](https://ui5.sap.com/#/controls).
 
@@ -173,6 +173,7 @@ Fiori 3 offers an evolved [cards](https://experience.sap.com/fiori-design-web/ov
 ``` xml
 	xmlns:f="sap.f"
 	xmlns:card="sap.f.cards"
+	xmlns:tnt="sap.tnt"
 ```
 
 ``` xml
@@ -207,7 +208,7 @@ Fiori 3 offers an evolved [cards](https://experience.sap.com/fiori-design-web/ov
 	</f:Card>
 ```
 
-5. Browse the [metadata.xml](localService/metadata.xml) file to see which other entities the ES5 service `GWSAMPLE_BASIC` offers
+5. Browse the [metadata.xml](webapp/localService/metadata.xml) file to see which other entities the ES5 service `GWSAMPLE_BASIC` offers
 
 6. Let's implement a panel with customers that bought the product with the following code:
 
