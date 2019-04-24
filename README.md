@@ -13,7 +13,7 @@ Join us on April 24, 2019 as we zero in on SAPUI5, our Javascript application fr
 ## Why SAPUI5?
 
 [SAPUI5](http://ui5.sap.com) and it's open source variant [OpenUI5](https://openui5.org) are a perfect match for creating enterprise-grade web apps.
-They come with feature-rich UI controls, powerful development concepts and  well-aligned development tools that will boost your developer productivity and get your app up and running in no time.
+They come with feature-rich UI controls, powerful development concepts and well-aligned development tools that will boost your developer productivity and get your app up and running in no time.
 
 ### Feature-Rich Controls
 
@@ -21,19 +21,23 @@ Besides bread and butter controls like buttons, lists, images and so on UI5 come
 More than 400 UI controls empower you to implement complex application scenarios with little coding efforts when it comes to defining the UI.
 There are UI controls for predefined Fiori layouts, charts for data visualization, various filtering and personalization options, and [much more](https://ui5.sap.com/#/controls).
 
+*Example:* [IconTabBar](https://ui5.sap.com/#/entity/sap.m.IconTabBar/sample/sap.m.sample.IconTabBar) | [Wizard](https://ui5.sap.com/#/entity/sap.m.Wizard/sample/sap.m.sample.WizardCurrentStep) | [Gantt Chart](https://ui5.sap.com/#/entity/sap.gantt.GanttChartContainer/sample/sap.gantt.sample.BasicGanttChart)
+
 ### Enterprise-Grade Features
 
 When using UI5, you will get a whole suite of tools that makes your life as a developer easier. You can make use of powerful development concepts like data binding and OData, use well-aligned tools like SAP Web IDE and easily integrate with SAP infrastructure and services on the SAP Cloud Platform.
 Your app will automatically be ready for localization (translation, RTL support, calendars, measures) and for accessibility (high contrast themes, keyboard support, screenreader support). During development, the UI5 support tools will help you find errors and optimize your app. Once released, Flexibility services can be used to adapt and extend your apps.
 
+*Example:* [Shopping Cart](https://ui5.sap.com/test-resources/sap/m/demokit/cart/webapp/index.html?sap-ui-theme=sap_belize_hcb) | [High Contrast Black](https://ui5.sap.com/test-resources/sap/m/demokit/cart/webapp/index.html?sap-ui-theme=sap-hcb) | [High Contrast White](https://ui5.sap.com/test-resources/sap/m/demokit/cart/webapp/index.html?sap-ui-theme=sap_belize_bcw)
+
 ### Responsive & Consistent Fiori Design
 
 Web apps built with UI5 run on any device and platform - they implement device-specific features and adapt to the available real estate out of the box or based on your preferences.
-The award-winning Fiori design language is implemented in all UI5 controls and brings consistency and a beautiful UI to your applications without any additional efforts.
-Templates that implement specific Fiori floorplans guarantee that actions are always located in the same places and look and feel the same across applications and screens.
+The award-winning Fiori design language is implemented in all standard UI5 controls and brings consistency and a beautiful UI to your applications without any additional efforts.
+Templates implement specific Fiori floorplans and guarantee that the look and feel across applications and screens is consistent.
+You can choose between freestyle app development or using Fiori Elements templates that are configured by service metadata and do not require addional codig.
 
-Fiori Elements for floorplans - or custom development for custom UI
-
+*Example:* [Demo Kit Responsiveness - reduce the window size](https://ui5.sap.com/#/controls) | [Demo Apps](https://ui5.sap.com/#/demoapps)
 
 ## Prerequisites
 
