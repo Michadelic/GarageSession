@@ -35,7 +35,7 @@ Your app will automatically be ready for localization (translation, RTL support,
 Web apps built with UI5 run on any device and platform - they implement device-specific features and adapt to the available real estate out of the box or based on your preferences.
 The award-winning Fiori design language is implemented in all standard UI5 controls and brings consistency and a beautiful UI to your applications without any additional efforts.
 Templates implement specific Fiori floorplans and guarantee that the look and feel across applications and screens is consistent.
-You can choose between freestyle app development or using Fiori Elements templates that are configured by service metadata and do not require addional codig.
+You can choose between freestyle app development or using Fiori Elements templates that are configured by service metadata and do not require addional coding.
 
 *Example:* [Demo Kit Responsiveness - reduce the window size](https://ui5.sap.com/#/controls) | [Demo Apps](https://ui5.sap.com/#/demoapps)
 
